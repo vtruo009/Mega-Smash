@@ -15,7 +15,7 @@ public class CharacterControll : MonoBehaviour
 
     private const float attackDuration = 0.5f; // seconds
 
-    private float health;
+    public float health;
     
     private KeyCode jump;
 
