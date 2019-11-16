@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 6233933873618481354}
   m_Layer: 0
   m_Name: Character 1
-  m_TagString: Untagged
+  m_TagString: character
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2007e1675dc8448458ab2447342e7289, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 0
   player: 0
 --- !u!61 &3457595136930602231
 BoxCollider2D:
