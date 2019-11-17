@@ -63,6 +63,7 @@
     <Compile Include="Assets\Menus\NameChanging.cs" />
     <Compile Include="Assets\Menus\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\CharacterControll.cs" />
+    <Compile Include="Assets\Scripts\FireBall.cs" />
     <Compile Include="Assets\Scripts\GameManagerScript.cs" />
     <Compile Include="Assets\Scripts\HealthBar.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
