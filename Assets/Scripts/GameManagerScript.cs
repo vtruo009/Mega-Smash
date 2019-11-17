@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameManagerScript : MonoBehaviour
+[System.Serializable]
+public class GameManagerScript : Singleton<GameManagerScript>
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    [SerializeField]
+    private IsWinner isWinnerDisplay;
+    public static bool GameGoingOn = false;
 
-    // Update is called once per frame
-    void Update()
+    public void gameEnd(Player winner)
     {
-        
+        isWinnerDisplay.GameEnd(winner);
     }
 }

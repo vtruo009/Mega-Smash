@@ -60,12 +60,16 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Menus\BattleStart.cs" />
+    <Compile Include="Assets\Menus\IsWinner.cs" />
     <Compile Include="Assets\Menus\NameChanging.cs" />
+    <Compile Include="Assets\Menus\PauseController.cs" />
     <Compile Include="Assets\Menus\SceneLoader.cs" />
     <Compile Include="Assets\Scripts\CharacterControll.cs" />
     <Compile Include="Assets\Scripts\FireBall.cs" />
     <Compile Include="Assets\Scripts\GameManagerScript.cs" />
     <Compile Include="Assets\Scripts\HealthBar.cs" />
+    <Compile Include="Assets\Scripts\Singleton.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>C:/Users/marih/Main/Projects/Unity/GameJamFall2019/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>

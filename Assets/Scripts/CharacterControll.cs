@@ -92,16 +92,24 @@ public class CharacterControll : MonoBehaviour
         state = State.alive;
         health = maxHealth;
     }
-    
+    private void Dead()
+    {
+        state = State.dead;
+        animator.SetTrigger(animatorDeadTrigger);
+        Player winner = (player == Player.player1) ? Player.player2 : Player.player1;
+        GameManagerScript.Instance.gameEnd(winner);
+    }
+
     private void Update()
     {
+        if (!GameManagerScript.GameGoingOn) return;
+
         if (state == State.hurt) return;
         if (state == State.dead) return;
 
         if (transform.position.y < seaLevel && state != State.dead)
         {
-            Debug.Log("You lost :)");
-            state = State.dead;
+            Dead();
         }
 
         if (Input.GetKey(controller.right))
@@ -156,8 +164,7 @@ public class CharacterControll : MonoBehaviour
         health -= amount;
         if (health <= 0)
         {
-            state = State.dead;
-            animator.SetTrigger(animatorDeadTrigger);
+            Dead();
         }
     }
     private void OnTriggerEnter2D(Collider2D collider) {

@@ -6,4 +6,8 @@ public class SceneLoader : MonoBehaviour
     {
             SceneManager.LoadScene("Fighting");
     }
+    public void goBackToMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
 }
