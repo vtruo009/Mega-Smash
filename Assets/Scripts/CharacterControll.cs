@@ -3,17 +3,23 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum Player { player1, player2};
-public enum State { alive, punch, fire, dead};
+public enum State { alive, punch, fire, hurt, dead};
+
 [System.Serializable]
 public class CharacterControll : MonoBehaviour
 {
     private Transform transform;
     private const float speed = 0.3f;
 
-    private Rigidbody2D rigidBody;
-    private const float pushForce = 500f;
+    private Animator animator;
+    private const string animatorPunchTrigger = "Punch";
 
-    private const float attackDuration = 0.5f; // seconds
+    private Rigidbody2D rigidBody;
+    private const float jumpForce = 500f;
+    private const float punchForce = 300f;
+
+    private const float attackDuration = 1f; // seconds
+    private const float hurtDuration = 0.3f;
 
     public float health;
     private const float maxHealth = 100;
@@ -37,6 +43,7 @@ public class CharacterControll : MonoBehaviour
     {
         transform = GetComponent<Transform>();
         rigidBody = GetComponent<Rigidbody2D>();
+        animator = GetComponent<Animator>();
 
         if (player == Player.player1)
         {
@@ -47,8 +54,8 @@ public class CharacterControll : MonoBehaviour
         else
         {
             controller = new Controller(
-            KeyCode.W, KeyCode.D, KeyCode.A,
-            KeyCode.F, KeyCode.S, KeyCode.G);
+                KeyCode.W, KeyCode.D, KeyCode.A,
+                KeyCode.F, KeyCode.S, KeyCode.G);
         }
 
         faceRight = new Quaternion(0f, -180f, 0f, 0f);
@@ -61,6 +68,9 @@ public class CharacterControll : MonoBehaviour
     
     private void Update()
     {
+        if (state == State.hurt) return;
+        if (state == State.dead) return;
+
         if (transform.position.y < seaLevel && state != State.dead)
         {
             Debug.Log("You lost :)");
@@ -97,12 +107,12 @@ public class CharacterControll : MonoBehaviour
             transform.localScale = scale;
         }
 
-        if (Input.GetKeyDown(controller.punch))
+        if (Input.GetKeyDown(controller.punch) && state != State.punch && state != State.hurt)
         {
             StartCoroutine(Punch());
         }
 
-        if (Input.GetKeyDown(controller.fire))
+        if (Input.GetKeyDown(controller.fire) && state != State.hurt)
         {
             StartCoroutine(Fire());
         }
@@ -111,21 +121,36 @@ public class CharacterControll : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Debug.Log("it's colliding");
         if (collision.gameObject.tag == "character")
         {
-            Debug.Log("It's character");
-            CharacterControll opponent = collision.gameObject.GetComponent<CharacterControll>();
+            GameObject opponentGameObject = collision.gameObject;
+            CharacterControll opponent = opponentGameObject.GetComponent<CharacterControll>();
+            Transform opponentTransform = opponentGameObject.GetComponent<Transform>();
 
             if (opponent.state == State.fire)
             {
                 health -= 10;
+
             }
             else if (opponent.state == State.punch)
             {
-                Debug.Log("It's punching");
+               rigidBody.AddForce(
+                   new Vector3(
+                       punchForce * ((transform.position.x > opponentTransform.position.x)  ? 1f : -1f),
+                       0f,
+                       0f)
+                   );
                 health -= 5;
+
+                state = State.hurt;
+                StartCoroutine(Hurt());
+
             }
+            else
+            {
+               
+            }
+            Debug.Log(opponent.gameObject.name + " " + opponent.state);
 
             if (health <= 0)
             {
@@ -135,24 +160,25 @@ public class CharacterControll : MonoBehaviour
     }
 
     #region IEnumerators
+    IEnumerator Hurt()
+    {
+        yield return new WaitForSeconds(hurtDuration);
+        state = State.alive;
+    }
+
     IEnumerator Punch()
     {
         state = State.punch;
-        Vector3 scale = transform.localScale;
-        scale.x *= 2;
-        transform.localScale = scale;
+        animator.SetTrigger(animatorPunchTrigger);
 
         yield return new WaitForSeconds(attackDuration);
-
-        scale = transform.localScale;
-        scale.x /= 2;
-        transform.localScale = scale;
+        
         state = State.alive;
     }
 
     IEnumerator Jump()
     {
-        rigidBody.AddForce(new Vector3(0f, pushForce, 0f));
+        rigidBody.AddForce(new Vector3(0f, jumpForce, 0f));
         canJump = false;
 
         yield return new WaitForSeconds(jumpTime);
