@@ -60,7 +60,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Menus\BattleStart.cs" />
+    <Compile Include="Assets\Menus\IsWinner.cs" />
     <Compile Include="Assets\Menus\NameChanging.cs" />
+    <Compile Include="Assets\Menus\PauseController.cs" />
     <Compile Include="Assets\Menus\SceneLoader.cs" />
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Z:/DevTools/GitHub/Mega-Smash/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
