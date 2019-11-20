@@ -6,7 +6,7 @@ Mega Smash is a two-player game that is inspired by the popular action game Supe
 
 ![Alt Text](https://github.com/vtruo009/Mega-Smash/blob/master/Image/Gameplay.png)
 
-The game can be played by downloading the application file in yhis repository. Player will be using the standard computer keyboard to play. Player one is on the right side with <kbd>arrow keys</kbd> for movements, <kbd>K</kbd> for punch attack, and <kbd>L</kbd> for long-range fire attack. Player two is on the left side with <kbd>W</kbd>, <kbd>A</kbd>, <kbd>S</kbd>, and <kbd>D</kbd> for movements, <kbd>F</kbd> for punch attack, and <kbd>G</kbd> for long-range fire attack.
+The game can be played by downloading the application file in this repository. Player will be using the standard computer keyboard to play. Player one is on the right side with <kbd>arrow keys</kbd> for movements, <kbd>K</kbd> for punch attack, and <kbd>L</kbd> for long-range fire attack. Player two is on the left side with <kbd>W</kbd>, <kbd>A</kbd>, <kbd>S</kbd>, and <kbd>D</kbd> for movements, <kbd>F</kbd> for punch attack, and <kbd>G</kbd> for long-range fire attack.
 
 ## Built With
 * Unity - a cross-platform game engine
