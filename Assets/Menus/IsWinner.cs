@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class IsWinner : MonoBehaviour
 {
-    public GameObject knockoutText;
     public GameObject playerWin1;
     public GameObject playerWin2;
     public GameObject endMenu;
@@ -19,7 +18,6 @@ public class IsWinner : MonoBehaviour
     {
         GameManagerScript.GameGoingOn = false;
         yield return new WaitForSecondsRealtime(1);
-        knockoutText.gameObject.SetActive(false);
         yield return new WaitForSecondsRealtime(0.5f);
         if (winner == Player.player1)
         { 

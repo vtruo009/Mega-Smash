@@ -2,9 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class PauseController : MonoBehaviour
 {
-    public bool isPaused = false;
+    public static bool isPaused = false;
     public GameObject PauseMenu;
 
     private void Update()

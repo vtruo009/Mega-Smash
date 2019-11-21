@@ -10,4 +10,10 @@ public class SceneLoader : MonoBehaviour
     {
         SceneManager.LoadScene("Main Menu");
     }
+    public void pauseBackToMenu()
+    {
+        Time.timeScale = 1.0f;
+        PauseController.isPaused = false;
+        SceneManager.LoadScene("Main Menu");
+    }
 }

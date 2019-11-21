@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class NameChanging : MonoBehaviour
 {
-    public Text names;
+    public RawImage names;
     public int nameValue;
     int nameCurrent;
 
